@@ -1,4 +1,5 @@
 //已实现遍历文件夹功能，正在进行单图多匹配操作
+```cpp
 #include <opencv2\opencv.hpp>
 #include <iostream>
 #include <vector>
@@ -54,6 +55,6 @@ int main()
     waitKey(0);
     return 0;
 }
-
+```
 
 
