@@ -1,60 +1,11 @@
-//已实现遍历文件夹功能，正在进行单图多匹配操作
-```cpp
-#include <opencv2\opencv.hpp>
-#include <iostream>
-#include <vector>
-using namespace cv;
-using namespace std; 
-#include"cvtest.h"
+# 项目名称：基于模板匹配的零件识别
+（该项目纯粹是学习项目）
+
+本人目前正在做关于模板匹配的课题
+学习C++、《OpenCv快速入门》后，在参考网络资料的基础上，目前已实现遍历文件夹功能，正在进行单图多匹配操作，单图多匹配已实现，但是不确定有多少个目标时，不能循环全部找到。
+接下来将继续更新
 
 
-int main()
-{
-    Mat img = imread("D:/PyCharm/pythonProject/OpenCV-py/lslm/11.jpg");
 
-    if (img.empty())
-    {
-        cout << "请确认图像文件名称是否正确" << endl;
-        return -1;
-    }
-
-    vector<String> filenames;//读取文件夹图片
-
-    glob("D:/PyCharm/pythonProject/OpenCV-py/muban/*.*jpg", filenames);
-
-    for (size_t i = 0; i < filenames.size(); ++i)
-    {
-        cout << filenames[i] << endl;
-        Mat src = imread(filenames[i]);
-
-        if (!src.data)
-            cerr << "Problem loading image!!!" << endl;
-
-        imshow("temp", src);
-        waitKey(0);
-        // do whatever you want with your images here 
-
-        Mat temp = src;
-
-        Mat result;
-        matchTemplate(img, temp, result, TM_CCOEFF_NORMED);//模板匹配
-        double maxVal, minVal;
-        Point minLoc, maxLoc;
-        //寻找匹配结果中的最大值和最小值以及坐标位置
-        minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc);
-        
-        result.rows;
-        //绘制最佳匹配区域
-        rectangle(img, Rect(maxLoc.x, maxLoc.y, temp.cols, temp.rows), Scalar(0, 0, 255), 2);
-        imshow("原图", img);
-        imshow("模板图像", temp);
-        imshow("result", result);
-
-    }
-
-    waitKey(0);
-    return 0;
-}
-```
 
 
